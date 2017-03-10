@@ -24,7 +24,7 @@
           Product
         </label>
 
-        <input type="text" id="product_id" name="product_id" placeholder="Product" class="form-control" value="<%= @purchase.product_id %>">
+        <%= select_tag(:product_id, options_from_collection_for_select(Product.all, :id, :brand_id, @purchase.product_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for user_id -->
