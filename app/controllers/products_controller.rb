@@ -30,6 +30,8 @@ class ProductsController < ApplicationController
     @product.makeup = params[:makeup]
     @product.makeup_category = params[:makeup_category]
     @product.image_url = params[:image_url]
+    @product.product_name = params[:product_name]
+    @product.sensitive_skin = params[:sensitive_skin]
 
     save_status = @product.save
 
@@ -64,6 +66,8 @@ class ProductsController < ApplicationController
     @product.makeup = params[:makeup]
     @product.makeup_category = params[:makeup_category]
     @product.image_url = params[:image_url]
+    @product.product_name = params[:product_name]
+    @product.sensitive_skin = params[:sensitive_skin]
 
     save_status = @product.save
 

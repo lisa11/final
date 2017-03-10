@@ -13,4 +13,6 @@ class Product < ApplicationRecord
 
   # Validations
 
+  validates :product_name, :uniqueness => { :scope => [:brand_id, :sensitive_skin, :skin_type] }
+
 end
