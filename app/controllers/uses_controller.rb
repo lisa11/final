@@ -10,7 +10,7 @@ class UsesController < ApplicationController
   end
 
   def index
-    @uses = Use.all
+    @uses = current_user.uses.page(params[:page]).per(10)
 
     render("uses/index.html.erb")
   end
