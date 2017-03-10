@@ -1,0 +1,43 @@
+<div class="page-header">
+  <h3>Purchase #<%= @purchase.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Product</dt>
+      <dd><%= @purchase.product_id %></dd>
+
+      <dt>User</dt>
+      <dd><%= @purchase.user_id %></dd>
+
+      <dt>Rating</dt>
+      <dd><%= @purchase.rating %></dd>
+
+      <dt>Note</dt>
+      <dd><%= @purchase.note %></dd>
+
+      <dt>Open date</dt>
+      <dd><%= @purchase.open_date %></dd>
+
+      <dt>Empty</dt>
+      <dd><%= @purchase.empty %></dd>
+
+      <dt>Estimated number of uses</dt>
+      <dd><%= @purchase.estimated_number_of_uses %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/purchases" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/purchases/<%= @purchase.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_purchase/<%= @purchase.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

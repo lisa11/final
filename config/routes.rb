@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Purchase resource:
+  # CREATE
+  get "/purchases/new", :controller => "purchases", :action => "new"
+  post "/create_purchase", :controller => "purchases", :action => "create"
+
+  # READ
+  get "/purchases", :controller => "purchases", :action => "index"
+  get "/purchases/:id", :controller => "purchases", :action => "show"
+
+  # UPDATE
+  get "/purchases/:id/edit", :controller => "purchases", :action => "edit"
+  post "/update_purchase/:id", :controller => "purchases", :action => "update"
+
+  # DELETE
+  get "/delete_purchase/:id", :controller => "purchases", :action => "destroy"
+  #------------------------------
+
   # Routes for the Product resource:
   # CREATE
   get "/products/new", :controller => "products", :action => "new"

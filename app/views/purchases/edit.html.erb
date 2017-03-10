@@ -1,0 +1,90 @@
+<!-- Validation failure messages -->
+<% if @purchase.errors.any? %>
+  <% @purchase.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Purchase #<%= @purchase.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_purchase/<%= @purchase.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for product_id -->
+      <div class="form-group">
+        <label for="product_id" class="control-label">
+          Product
+        </label>
+
+        <input type="text" id="product_id" name="product_id" placeholder="Product" class="form-control" value="<%= @purchase.product_id %>">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @purchase.user_id %>">
+      </div>
+
+      <!-- Label and input for rating -->
+      <div class="form-group">
+        <label for="rating" class="control-label">
+          Rating
+        </label>
+
+        <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="<%= @purchase.rating %>">
+      </div>
+
+      <!-- Label and input for note -->
+      <div class="form-group">
+        <label for="note" class="control-label">
+          Note
+        </label>
+
+        <textarea id="note" name="note" placeholder="Note" class="form-control" rows="3"><%= @purchase.note %></textarea>
+      </div>
+
+      <!-- Label and input for open_date -->
+      <div class="form-group">
+        <label for="open_date" class="control-label">
+          Open date
+        </label>
+
+        <input type="text" id="open_date" name="open_date" placeholder="Open date" class="form-control" value="<%= @purchase.open_date %>">
+      </div>
+
+      <!-- Label and input for empty -->
+      <div class="checkbox">
+        <label for="empty">
+          <input type="checkbox" id="empty" name="empty" value="1" <%= "checked" if @purchase.empty %>>
+          Empty
+        </label>
+      </div>
+
+      <!-- Label and input for estimated_number_of_uses -->
+      <div class="form-group">
+        <label for="estimated_number_of_uses" class="control-label">
+          Estimated number of uses
+        </label>
+
+        <input type="text" id="estimated_number_of_uses" name="estimated_number_of_uses" placeholder="Estimated number of uses" class="form-control" value="<%= @purchase.estimated_number_of_uses %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Purchase
+      </button>
+      or
+      <a href="/purchases/<%= @purchase.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
