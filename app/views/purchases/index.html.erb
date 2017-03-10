@@ -3,6 +3,148 @@
     Purchases
     <a href="/purchases/new" class="btn btn-lg btn-success">New Purchase</a>
   </h1>
+</div><div class="row mb-1">
+  <div class="col-md-12">
+    <%= search_form_for @q, :class => collapse_search_form, :id => "purchases_filters" do |f| %>
+      <p class="lead">Narrow results:</p>
+
+        <div class="form-group">
+  <%= f.label :estimated_number_of_uses, "Estimated number of uses" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :estimated_number_of_uses_gteq, :class => "form-control", :placeholder => "Estimated number of uses greater than or equal to" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.text_field :estimated_number_of_uses_lteq, :class => "form-control", :placeholder => "Estimated number of uses less than or equal to" %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+    <%= f.label :empty_eq, "Empty" %>
+    <div>
+      <label class="radio-inline">
+        <%= f.radio_button :empty_eq, "1", checked: ((params[:q] && params[:q][:empty_eq]) == "1" ? "checked" : "") %> Yes
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :empty_eq, "0", checked: ((params[:q] && params[:q][:empty_eq]) == "0" ? "checked" : "")%> No
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :empty_eq, ""%> Either
+      </label>
+    </div>
+  </div>
+
+<div class="form-group">
+          <%= f.label :open_date, "Open date" %>
+          <div class="row">
+            <div class='col-md-6 mb-1'>
+              <div class='input-group date' id='open_dategteqPicker'>
+                  <%= f.text_field :open_date_gteq, :class => "form-control", :placeholder => "Open date greater than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+
+            <div class='col-md-6'>
+              <div class='input-group date' id='open_datelteqPicker'>
+                  <%= f.text_field :open_date_lteq, :class => "form-control", :placeholder => "Open date less than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#open_dategteqPicker').datetimepicker({
+                  format: 'MM/DD/YYYY'
+              });
+              $('#open_datelteqPicker').datetimepicker({
+                  useCurrent: false,
+                  format: 'MM/DD/YYYY'
+              });
+              $('#open_dategteqPicker').on("dp.change", function (e) {
+                  $('#open_datelteqPicker').data("DateTimePicker").minDate(e.date);
+              });
+              $('#open_datelteqPicker').on("dp.change", function (e) {
+                  $('#open_dategteqPicker').data("DateTimePicker").maxDate(e.date);
+              });
+          });
+      </script>
+
+<div class="form-group">
+    <%= f.label :note_cont, "Note contains" %>
+    <%= f.text_field :note_cont, :class => "form-control", :placeholder => "Note contains" %>
+  </div>
+
+<div class="form-group">
+  <%= f.label :rating, "Rating" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :rating_gteq, :class => "form-control", :placeholder => "Rating greater than or equal to" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.text_field :rating_lteq, :class => "form-control", :placeholder => "Rating less than or equal to" %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+          <%= f.label :created_at, "Created at" %>
+          <div class="row">
+            <div class='col-md-6 mb-1'>
+              <div class='input-group date' id='created_atgteqPicker'>
+                  <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+
+            <div class='col-md-6'>
+              <div class='input-group date' id='created_atlteqPicker'>
+                  <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#created_atgteqPicker').datetimepicker({
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#created_atlteqPicker').datetimepicker({
+                  useCurrent: false,
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#created_atgteqPicker').on("dp.change", function (e) {
+                  $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
+              });
+              $('#created_atlteqPicker').on("dp.change", function (e) {
+                  $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
+              });
+          });
+      </script>
+
+        <div class="form-group">
+      <%= f.label :user_email_cont, "User email contains" %>
+      <%= f.text_field :user_email_cont, :class => "form-control", :placeholder => "User email contains" %>
+    </div>
+
+      <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
+
+      <a href="/purchases" class="btn btn-default btn-block mb-1">Clear filters</a>
+    <% end %>
+    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#purchases_filters">
+      Show Filters
+    </a>
+  </div>
 </div>
 
 <div class="row">

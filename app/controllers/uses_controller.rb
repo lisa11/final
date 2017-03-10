@@ -10,7 +10,8 @@ class UsesController < ApplicationController
   end
 
   def index
-    @uses = current_user.uses.page(params[:page]).per(10)
+    @q = current_user.uses.ransack(params[:q])
+      @uses = @q.result(:distinct => true).includes(:purchase, :user).page(params[:page]).per(10)
 
     render("uses/index.html.erb")
   end
