@@ -22,8 +22,11 @@
         <td><%= use.date %></td>
         <td>
           <a href="/uses/<%= use.id %>" class="btn btn-primary">Show</a>
-          <a href="/uses/<%= use.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_use/<%= use.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          
+          <% if current_user == use.user %>
+            <a href="/uses/<%= use.id %>/edit" class="btn btn-warning">Edit</a>
+            <a href="/delete_use/<%= use.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% end %>
         </td>
       </tr>
       <% end %>
