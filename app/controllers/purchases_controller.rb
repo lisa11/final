@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :current_user_must_be_purchase_user, :only => [:edit, :update, :destroy]
+  before_action :current_user_must_be_purchase_user, :only => [:show, :edit, :update, :destroy]
 
   def current_user_must_be_purchase_user
     purchase = Purchase.find(params[:id])
