@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h3>Product #<%= @product.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Brand</dt>
+      <dd><%= @product.brand_id %></dd>
+
+      <dt>Shelf life</dt>
+      <dd><%= @product.shelf_life %></dd>
+
+      <dt>Skin type</dt>
+      <dd><%= @product.skin_type %></dd>
+
+      <dt>Skincare</dt>
+      <dd><%= @product.skincare %></dd>
+
+      <dt>Skincare category</dt>
+      <dd><%= @product.skincare_category %></dd>
+
+      <dt>Makeup</dt>
+      <dd><%= @product.makeup %></dd>
+
+      <dt>Makeup category</dt>
+      <dd><%= @product.makeup_category %></dd>
+
+      <dt>Image url</dt>
+      <dd><%= @product.image_url %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/products" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/products/<%= @product.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_product/<%= @product.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

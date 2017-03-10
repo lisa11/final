@@ -1,0 +1,98 @@
+<!-- Validation failure messages -->
+<% if @product.errors.any? %>
+  <% @product.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Product #<%= @product.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_product/<%= @product.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for brand_id -->
+      <div class="form-group">
+        <label for="brand_id" class="control-label">
+          Brand
+        </label>
+
+        <input type="text" id="brand_id" name="brand_id" placeholder="Brand" class="form-control" value="<%= @product.brand_id %>">
+      </div>
+
+      <!-- Label and input for shelf_life -->
+      <div class="form-group">
+        <label for="shelf_life" class="control-label">
+          Shelf life
+        </label>
+
+        <input type="text" id="shelf_life" name="shelf_life" placeholder="Shelf life" class="form-control" value="<%= @product.shelf_life %>">
+      </div>
+
+      <!-- Label and input for skin_type -->
+      <div class="form-group">
+        <label for="skin_type" class="control-label">
+          Skin type
+        </label>
+
+        <input type="text" id="skin_type" name="skin_type" placeholder="Skin type" class="form-control" value="<%= @product.skin_type %>">
+      </div>
+
+      <!-- Label and input for skincare -->
+      <div class="checkbox">
+        <label for="skincare">
+          <input type="checkbox" id="skincare" name="skincare" value="1" <%= "checked" if @product.skincare %>>
+          Skincare
+        </label>
+      </div>
+
+      <!-- Label and input for skincare_category -->
+      <div class="form-group">
+        <label for="skincare_category" class="control-label">
+          Skincare category
+        </label>
+
+        <input type="text" id="skincare_category" name="skincare_category" placeholder="Skincare category" class="form-control" value="<%= @product.skincare_category %>">
+      </div>
+
+      <!-- Label and input for makeup -->
+      <div class="checkbox">
+        <label for="makeup">
+          <input type="checkbox" id="makeup" name="makeup" value="1" <%= "checked" if @product.makeup %>>
+          Makeup
+        </label>
+      </div>
+
+      <!-- Label and input for makeup_category -->
+      <div class="form-group">
+        <label for="makeup_category" class="control-label">
+          Makeup category
+        </label>
+
+        <input type="text" id="makeup_category" name="makeup_category" placeholder="Makeup category" class="form-control" value="<%= @product.makeup_category %>">
+      </div>
+
+      <!-- Label and input for image_url -->
+      <div class="form-group">
+        <label for="image_url" class="control-label">
+          Image url
+        </label>
+
+        <input type="text" id="image_url" name="image_url" placeholder="Image url" class="form-control" value="<%= @product.image_url %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Product
+      </button>
+      or
+      <a href="/products/<%= @product.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
