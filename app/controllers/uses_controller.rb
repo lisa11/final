@@ -1,5 +1,5 @@
 class UsesController < ApplicationController
-  before_action :current_user_must_be_use_user, :only => [:edit, :update, :destroy]
+  before_action :current_user_must_be_use_user, :only => [:show, :edit, :update, :destroy]
 
   def current_user_must_be_use_user
     use = Use.find(params[:id])
