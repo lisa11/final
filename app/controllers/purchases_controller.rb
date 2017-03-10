@@ -10,7 +10,7 @@ class PurchasesController < ApplicationController
   end
 
   def index
-    @purchases = Purchase.all
+    @purchases = current_user.purchases.page(params[:page]).per(10)
 
     render("purchases/index.html.erb")
   end
