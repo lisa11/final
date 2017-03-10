@@ -27,14 +27,8 @@
         <%= select_tag(:purchase_id, options_from_collection_for_select(Purchase.all, :id, :product_id, @use.purchase_id), :class => "form-control") %>
       </div>
 
-      <!-- Label and input for user_id -->
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
-
-        <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :email, @use.user_id), :class => "form-control") %>
-      </div>
+      
+      
 
       <!-- Label and input for date -->
       <div class="form-group">
