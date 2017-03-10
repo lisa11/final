@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Use resource:
+  # CREATE
+  get "/uses/new", :controller => "uses", :action => "new"
+  post "/create_use", :controller => "uses", :action => "create"
+
+  # READ
+  get "/uses", :controller => "uses", :action => "index"
+  get "/uses/:id", :controller => "uses", :action => "show"
+
+  # UPDATE
+  get "/uses/:id/edit", :controller => "uses", :action => "edit"
+  post "/update_use/:id", :controller => "uses", :action => "update"
+
+  # DELETE
+  get "/delete_use/:id", :controller => "uses", :action => "destroy"
+  #------------------------------
+
   devise_for :users
   # Routes for the User resource:
   # READ

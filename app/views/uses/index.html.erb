@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>
+    Uses
+    <a href="/uses/new" class="btn btn-lg btn-success">New Use</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Purchase</th>
+        <th>User</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @uses.each do |use| %>
+      <tr>
+        <td><%= use.purchase_id %></td>
+        <td><%= use.user_id %></td>
+        <td><%= use.date %></td>
+        <td>
+          <a href="/uses/<%= use.id %>" class="btn btn-primary">Show</a>
+          <a href="/uses/<%= use.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_use/<%= use.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
