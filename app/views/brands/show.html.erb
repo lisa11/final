@@ -48,6 +48,81 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_product" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for brand_id -->
+      <input type="hidden" name="brand_id" value="<%= @brand.id %>">
+
+      <!-- Label and input for shelf_life -->
+      <div class="form-group">
+        <label for="shelf_life" class="control-label">
+          Shelf life
+        </label>
+
+        <input type="text" id="shelf_life" name="shelf_life" placeholder="Shelf life" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for skin_type -->
+      <div class="form-group">
+        <label for="skin_type" class="control-label">
+          Skin type
+        </label>
+
+        <input type="text" id="skin_type" name="skin_type" placeholder="Skin type" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for skincare -->
+      <div class="checkbox">
+        <label for="skincare">
+          <input type="checkbox" id="skincare" name="skincare" value="1" <%= "checked" if @product.skincare %>>
+          Skincare
+        </label>
+      </div>
+
+      <!-- Label and input for skincare_category -->
+      <div class="form-group">
+        <label for="skincare_category" class="control-label">
+          Skincare category
+        </label>
+
+        <input type="text" id="skincare_category" name="skincare_category" placeholder="Skincare category" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for makeup -->
+      <div class="checkbox">
+        <label for="makeup">
+          <input type="checkbox" id="makeup" name="makeup" value="1" <%= "checked" if @product.makeup %>>
+          Makeup
+        </label>
+      </div>
+
+      <!-- Label and input for makeup_category -->
+      <div class="form-group">
+        <label for="makeup_category" class="control-label">
+          Makeup category
+        </label>
+
+        <input type="text" id="makeup_category" name="makeup_category" placeholder="Makeup category" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for image_url -->
+      <div class="form-group">
+        <label for="image_url" class="control-label">
+          Image url
+        </label>
+
+        <input type="text" id="image_url" name="image_url" placeholder="Image url" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Product
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

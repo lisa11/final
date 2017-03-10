@@ -16,6 +16,7 @@ class PurchasesController < ApplicationController
   end
 
   def show
+    @use = Use.new
     @purchase = Purchase.find(params[:id])
 
     render("purchases/show.html.erb")

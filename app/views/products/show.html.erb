@@ -72,6 +72,67 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_purchase" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for product_id -->
+      <input type="hidden" name="product_id" value="<%= @product.id %>">
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <!-- Label and input for rating -->
+      <div class="form-group">
+        <label for="rating" class="control-label">
+          Rating
+        </label>
+
+        <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for note -->
+      <div class="form-group">
+        <label for="note" class="control-label">
+          Note
+        </label>
+
+        <textarea id="note" name="note" placeholder="Note" class="form-control" rows="3"></textarea>
+      </div>
+
+      <!-- Label and input for open_date -->
+      <div class="form-group">
+        <label for="open_date" class="control-label">
+          Open date
+        </label>
+
+        <input type="text" id="open_date" name="open_date" placeholder="Open date" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for empty -->
+      <div class="checkbox">
+        <label for="empty">
+          <input type="checkbox" id="empty" name="empty" value="1" <%= "checked" if @purchase.empty %>>
+          Empty
+        </label>
+      </div>
+
+      <!-- Label and input for estimated_number_of_uses -->
+      <div class="form-group">
+        <label for="estimated_number_of_uses" class="control-label">
+          Estimated number of uses
+        </label>
+
+        <input type="text" id="estimated_number_of_uses" name="estimated_number_of_uses" placeholder="Estimated number of uses" class="form-control" value="">
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Purchase
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>
