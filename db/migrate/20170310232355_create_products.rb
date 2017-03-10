@@ -9,6 +9,8 @@ class CreateProducts < ActiveRecord::Migration
       t.boolean :makeup
       t.string :makeup_category
       t.string :image_url
+      t.string :product_name
+      t.boolean :sensitive_skin
 
       t.timestamps
 

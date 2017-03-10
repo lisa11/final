@@ -18,6 +18,15 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
+      <!-- Label and input for brand_name -->
+      <div class="form-group">
+        <label for="brand_name" class="control-label">
+          Brand name
+        </label>
+
+        <input type="text" id="brand_name" name="brand_name" placeholder="Brand name" class="form-control" value="<%= @brand.brand_name %>">
+      </div>
+
       <button class="btn btn-warning">
         Update Brand
       </button>

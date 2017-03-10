@@ -24,7 +24,7 @@
           Brand
         </label>
 
-        <%= select_tag(:brand_id, options_from_collection_for_select(Brand.all, :id, :created_at, @product.brand_id), :class => "form-control") %>
+        <%= select_tag(:brand_id, options_from_collection_for_select(Brand.all, :id, :brand_name, @product.brand_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for shelf_life -->
@@ -86,6 +86,23 @@
         </label>
 
         <input type="text" id="image_url" name="image_url" placeholder="Image url" class="form-control" value="<%= @product.image_url %>">
+      </div>
+
+      <!-- Label and input for product_name -->
+      <div class="form-group">
+        <label for="product_name" class="control-label">
+          Product name
+        </label>
+
+        <input type="text" id="product_name" name="product_name" placeholder="Product name" class="form-control" value="<%= @product.product_name %>">
+      </div>
+
+      <!-- Label and input for sensitive_skin -->
+      <div class="checkbox">
+        <label for="sensitive_skin">
+          <input type="checkbox" id="sensitive_skin" name="sensitive_skin" value="1" <%= "checked" if @product.sensitive_skin %>>
+          Sensitive skin
+        </label>
       </div>
 
       <button class="btn btn-success">

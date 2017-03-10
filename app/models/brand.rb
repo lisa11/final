@@ -8,4 +8,6 @@ class Brand < ApplicationRecord
 
   # Validations
 
+  validates :brand_name, :uniqueness => true
+
 end

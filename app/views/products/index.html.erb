@@ -9,6 +9,26 @@
       <p class="lead">Narrow results:</p>
 
         <div class="form-group">
+    <%= f.label :sensitive_skin_eq, "Sensitive skin" %>
+    <div>
+      <label class="radio-inline">
+        <%= f.radio_button :sensitive_skin_eq, "1", checked: ((params[:q] && params[:q][:sensitive_skin_eq]) == "1" ? "checked" : "") %> Yes
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :sensitive_skin_eq, "0", checked: ((params[:q] && params[:q][:sensitive_skin_eq]) == "0" ? "checked" : "")%> No
+      </label>
+      <label class="radio-inline">
+        <%= f.radio_button :sensitive_skin_eq, ""%> Either
+      </label>
+    </div>
+  </div>
+
+<div class="form-group">
+    <%= f.label :product_name_cont, "Product name contains" %>
+    <%= f.text_field :product_name_cont, :class => "form-control", :placeholder => "Product name contains" %>
+  </div>
+
+<div class="form-group">
     <%= f.label :image_url_cont, "Image url contains" %>
     <%= f.text_field :image_url_cont, :class => "form-control", :placeholder => "Image url contains" %>
   </div>
@@ -111,44 +131,9 @@
       </script>
 
         <div class="form-group">
-          <%= f.label :created_at, "Brand Created at" %>
-          <div class="row">
-            <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='brandgteqcreated_atPicker'>
-                  <%= f.text_field :brand_created_at_gteq, :class => "form-control", :placeholder => "Brand Created at greater than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-
-            <div class='col-md-6'>
-              <div class='input-group date' id='brandlteqcreated_atPicker'>
-                  <%= f.text_field :brand_created_at_lteq, :class => "form-control", :placeholder => "Brand Created at less than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-          </div>
-      </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#brandgteqcreated_atPicker').datetimepicker({
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#brandlteqcreated_atPicker').datetimepicker({
-                  useCurrent: false,
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#brandgteqcreated_atPicker').on("dp.change", function (e) {
-                  $('#brandlteqcreated_atPicker').data("DateTimePicker").minDate(e.date);
-              });
-              $('#brandlteqcreated_atPicker').on("dp.change", function (e) {
-                  $('#brandgteqcreated_atPicker').data("DateTimePicker").maxDate(e.date);
-              });
-          });
-      </script>
+      <%= f.label :brand_brand_name_cont, "Brand brand_name contains" %>
+      <%= f.text_field :brand_brand_name_cont, :class => "form-control", :placeholder => "Brand brand_name contains" %>
+    </div>
 
 <div class="form-group">
       <%= f.label :users_email_cont, "User email contains" %>
@@ -177,6 +162,8 @@
         <th>Makeup</th>
         <th>Makeup category</th>
         <th>Image url</th>
+        <th>Product name</th>
+        <th>Sensitive skin</th>
         <th>Actions</th>
       </tr>
 
@@ -185,7 +172,7 @@
         <td>
           <% if product.brand.present? %>
             <a href="/brands/<%= product.brand.id %>">
-              <%= product.brand.created_at %>
+              <%= product.brand.brand_name %>
             </a>
           <% end %>
         </td>
@@ -196,6 +183,8 @@
         <td><%= product.makeup %></td>
         <td><%= product.makeup_category %></td>
         <td><%= product.image_url %></td>
+        <td><%= product.product_name %></td>
+        <td><%= product.sensitive_skin %></td>
         <td>
           <a href="/products/<%= product.id %>" class="btn btn-primary">Show</a>
           <a href="/products/<%= product.id %>/edit" class="btn btn-warning">Edit</a>
