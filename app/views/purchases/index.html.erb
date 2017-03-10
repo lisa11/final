@@ -22,7 +22,7 @@
       <% @purchases.each do |purchase| %>
       <tr>
         <td><%= purchase.product.brand_id %></td>
-        <td><%= purchase.user_id %></td>
+        <td><%= purchase.user.email %></td>
         <td><%= purchase.rating %></td>
         <td><%= purchase.note %></td>
         <td><%= purchase.open_date %></td>
