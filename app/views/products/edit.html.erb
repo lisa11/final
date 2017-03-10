@@ -24,7 +24,7 @@
           Brand
         </label>
 
-        <input type="text" id="brand_id" name="brand_id" placeholder="Brand" class="form-control" value="<%= @product.brand_id %>">
+        <%= select_tag(:brand_id, options_from_collection_for_select(Brand.all, :id, :created_at, @product.brand_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for shelf_life -->
