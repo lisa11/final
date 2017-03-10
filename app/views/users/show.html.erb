@@ -20,3 +20,96 @@
     </div>
   </div>
 </div>
+
+<!-- A User has many uses -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Uses
+      </li>
+
+      <% @user.uses.each do |use| %>
+        <li class="list-group-item">
+          <a href="/uses/<%= use.id %>">
+            <%= use.purchase_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/uses/<%= use.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/uses/<%= use.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_use/<%= use.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many purchases -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Purchases
+      </li>
+
+      <% @user.purchases.each do |purchase| %>
+        <li class="list-group-item">
+          <a href="/purchases/<%= purchase.id %>">
+            <%= purchase.product_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/purchases/<%= purchase.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/purchases/<%= purchase.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_purchase/<%= purchase.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- A User has many products -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Products
+      </li>
+
+      <% @user.products.each do |product| %>
+        <li class="list-group-item">
+          <a href="/products/<%= product.id %>">
+            <%= product.brand_id %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/products/<%= product.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/products/<%= product.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_product/<%= product.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
