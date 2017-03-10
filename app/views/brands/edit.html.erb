@@ -1,0 +1,28 @@
+<!-- Validation failure messages -->
+<% if @brand.errors.any? %>
+  <% @brand.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Brand #<%= @brand.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_brand/<%= @brand.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <button class="btn btn-warning">
+        Update Brand
+      </button>
+      or
+      <a href="/brands/<%= @brand.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
