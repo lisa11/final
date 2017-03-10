@@ -30,8 +30,11 @@
         <td><%= purchase.estimated_number_of_uses %></td>
         <td>
           <a href="/purchases/<%= purchase.id %>" class="btn btn-primary">Show</a>
-          <a href="/purchases/<%= purchase.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_purchase/<%= purchase.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          
+          <% if current_user == purchase.user %>
+            <a href="/purchases/<%= purchase.id %>/edit" class="btn btn-warning">Edit</a>
+            <a href="/delete_purchase/<%= purchase.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% end %>
         </td>
       </tr>
       <% end %>

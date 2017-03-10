@@ -1,4 +1,14 @@
 class PurchasesController < ApplicationController
+  before_action :current_user_must_be_purchase_user, :only => [:edit, :update, :destroy]
+
+  def current_user_must_be_purchase_user
+    purchase = Purchase.find(params[:id])
+
+    unless current_user == purchase.user
+      redirect_to :back, :alert => "You are not authorized for that."
+    end
+  end
+
   def index
     @purchases = Purchase.all
 
