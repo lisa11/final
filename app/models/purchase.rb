@@ -1,6 +1,8 @@
 class Purchase < ApplicationRecord
   # Direct associations
 
+  belongs_to :user
+
   has_many   :uses,
              :dependent => :nullify
 
