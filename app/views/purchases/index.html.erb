@@ -21,8 +21,20 @@
 
       <% @purchases.each do |purchase| %>
       <tr>
-        <td><%= purchase.product.brand_id %></td>
-        <td><%= purchase.user.email %></td>
+        <td>
+          <% if purchase.product.present? %>
+            <a href="/products/<%= purchase.product.id %>">
+              <%= purchase.product.brand_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if purchase.user.present? %>
+            <a href="/users/<%= purchase.user.id %>">
+              <%= purchase.user.email %>
+            </a>
+          <% end %>
+        </td>
         <td><%= purchase.rating %></td>
         <td><%= purchase.note %></td>
         <td><%= purchase.open_date %></td>

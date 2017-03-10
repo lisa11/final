@@ -17,8 +17,20 @@
 
       <% @uses.each do |use| %>
       <tr>
-        <td><%= use.purchase.product_id %></td>
-        <td><%= use.user.email %></td>
+        <td>
+          <% if use.purchase.present? %>
+            <a href="/purchases/<%= use.purchase.id %>">
+              <%= use.purchase.product_id %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if use.user.present? %>
+            <a href="/users/<%= use.user.id %>">
+              <%= use.user.email %>
+            </a>
+          <% end %>
+        </td>
         <td><%= use.date %></td>
         <td>
           <a href="/uses/<%= use.id %>" class="btn btn-primary">Show</a>
