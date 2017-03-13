@@ -4,195 +4,52 @@
     <a href="/products/new" class="btn btn-lg btn-success">New Product</a>
   </h1>
 </div><div class="row mb-1">
-  <div class="col-md-12">
-    <%= search_form_for @q, :class => collapse_search_form, :id => "products_filters" do |f| %>
-      <p class="lead">Narrow results:</p>
 
-        <div class="form-group">
-    <%= f.label :sensitive_skin_eq, "Sensitive skin" %>
-    <div>
-      <label class="radio-inline">
-        <%= f.radio_button :sensitive_skin_eq, "1", checked: ((params[:q] && params[:q][:sensitive_skin_eq]) == "1" ? "checked" : "") %> Yes
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :sensitive_skin_eq, "0", checked: ((params[:q] && params[:q][:sensitive_skin_eq]) == "0" ? "checked" : "")%> No
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :sensitive_skin_eq, ""%> Either
-      </label>
-    </div>
-  </div>
-
-<div class="form-group">
-    <%= f.label :product_name_cont, "Product name contains" %>
-    <%= f.text_field :product_name_cont, :class => "form-control", :placeholder => "Product name contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :image_url_cont, "Image url contains" %>
-    <%= f.text_field :image_url_cont, :class => "form-control", :placeholder => "Image url contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :makeup_category_cont, "Makeup category contains" %>
-    <%= f.text_field :makeup_category_cont, :class => "form-control", :placeholder => "Makeup category contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :makeup_eq, "Makeup" %>
-    <div>
-      <label class="radio-inline">
-        <%= f.radio_button :makeup_eq, "1", checked: ((params[:q] && params[:q][:makeup_eq]) == "1" ? "checked" : "") %> Yes
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :makeup_eq, "0", checked: ((params[:q] && params[:q][:makeup_eq]) == "0" ? "checked" : "")%> No
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :makeup_eq, ""%> Either
-      </label>
-    </div>
-  </div>
-
-<div class="form-group">
-    <%= f.label :skincare_category_cont, "Skincare category contains" %>
-    <%= f.text_field :skincare_category_cont, :class => "form-control", :placeholder => "Skincare category contains" %>
-  </div>
-
-<div class="form-group">
-    <%= f.label :skincare_eq, "Skincare" %>
-    <div>
-      <label class="radio-inline">
-        <%= f.radio_button :skincare_eq, "1", checked: ((params[:q] && params[:q][:skincare_eq]) == "1" ? "checked" : "") %> Yes
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :skincare_eq, "0", checked: ((params[:q] && params[:q][:skincare_eq]) == "0" ? "checked" : "")%> No
-      </label>
-      <label class="radio-inline">
-        <%= f.radio_button :skincare_eq, ""%> Either
-      </label>
-    </div>
-  </div>
-
-<div class="form-group">
-    <%= f.label :skin_type_cont, "Skin type contains" %>
-    <%= f.text_field :skin_type_cont, :class => "form-control", :placeholder => "Skin type contains" %>
-  </div>
-
-<div class="form-group">
-  <%= f.label :shelf_life, "Shelf life" %>
   <div class="row">
-    <div class='col-md-6 mb-1'>
-      <%= f.text_field :shelf_life_gteq, :class => "form-control", :placeholder => "Shelf life greater than or equal to" %>
-    </div>
-    <div class='col-md-6'>
-      <%= f.text_field :shelf_life_lteq, :class => "form-control", :placeholder => "Shelf life less than or equal to" %>
-    </div>
-  </div>
-</div>
+    <div class="col-md-12">
+      <table class="table table-striped table-hover">
+        <tr>
+          <th>Brand</th>
+          <th>Image</th>
+          <th>Product name</th>
+          <th>Shelf life</th>
+          <th>Skin type</th>
+          <th>Category</th>
+          <th>Sensitive skin</th>
+        </tr>
 
-<div class="form-group">
-          <%= f.label :created_at, "Created at" %>
-          <div class="row">
-            <div class='col-md-6 mb-1'>
-              <div class='input-group date' id='created_atgteqPicker'>
-                  <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-
-            <div class='col-md-6'>
-              <div class='input-group date' id='created_atlteqPicker'>
-                  <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
-                  <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                  </span>
-              </div>
-            </div>
-          </div>
-      </div>
-      <script type="text/javascript">
-          $(function () {
-              $('#created_atgteqPicker').datetimepicker({
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atlteqPicker').datetimepicker({
-                  useCurrent: false,
-                  format: 'YYYY-MM-DD hh:mm:SS'
-              });
-              $('#created_atgteqPicker').on("dp.change", function (e) {
-                  $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
-              });
-              $('#created_atlteqPicker').on("dp.change", function (e) {
-                  $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
-              });
-          });
-      </script>
-
-        <div class="form-group">
-      <%= f.label :brand_brand_name_cont, "Brand brand_name contains" %>
-      <%= f.text_field :brand_brand_name_cont, :class => "form-control", :placeholder => "Brand brand_name contains" %>
-    </div>
-
-<div class="form-group">
-      <%= f.label :users_email_cont, "User email contains" %>
-      <%= f.text_field :users_email_cont, :class => "form-control", :placeholder => "User email contains" %>
-    </div>
-
-      <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
-
-      <a href="/products" class="btn btn-default btn-block mb-1">Clear filters</a>
-    <% end %>
-    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#products_filters">
-      Show Filters
-    </a>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <table class="table table-striped table-hover">
-      <tr>
-        <th>Brand</th>
-        <th>Shelf life</th>
-        <th>Skin type</th>
-        <th>Skincare</th>
-        <th>Skincare category</th>
-        <th>Makeup</th>
-        <th>Makeup category</th>
-        <th>Image url</th>
-        <th>Product name</th>
-        <th>Sensitive skin</th>
-        <th>Actions</th>
-      </tr>
-
-      <% @products.each do |product| %>
-      <tr>
-        <td>
-          <% if product.brand.present? %>
+        <% @products.each do |product| %>
+        <tr>
+          <td>
+            <% if product.brand.present? %>
             <a href="/brands/<%= product.brand.id %>">
               <%= product.brand.brand_name %>
             </a>
+            <% end %>
+          </td>
+          <td align="center"><img src="<%= product.image_url %>" height="150" width="auto"></td>
+          <td>
+            <a href="/products/<%= product.id %>">
+              <%= product.product_name %>
+            </a>
+          </td>
+          <td><%= product.shelf_life %></td>
+          <td><%= product.skin_type %></td>
+          <% if product.skincare %>
+          <td><%= product.skincare_category %></td>
+          <% elsif product.makeup %>
+          <td><%= product.makeup_category %></td>
           <% end %>
-        </td>
-        <td><%= product.shelf_life %></td>
-        <td><%= product.skin_type %></td>
-        <td><%= product.skincare %></td>
-        <td><%= product.skincare_category %></td>
-        <td><%= product.makeup %></td>
-        <td><%= product.makeup_category %></td>
-        <td><%= product.image_url %></td>
-        <td><%= product.product_name %></td>
-        <td><%= product.sensitive_skin %></td>
-        <td>
-          <a href="/products/<%= product.id %>" class="btn btn-primary">Show</a>
-          <a href="/products/<%= product.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_product/<%= product.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-    <%= paginate @products, theme: 'twitter-bootstrap-4' %>
+          <td>
+            <% if product.sensitive_skin%>
+            Yes
+            <% else %>
+            No
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      <%= paginate @products, theme: 'twitter-bootstrap-4' %>
+    </div>
   </div>
-</div>

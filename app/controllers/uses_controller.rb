@@ -11,7 +11,22 @@ class UsesController < ApplicationController
 
   def index
     @q = current_user.uses.ransack(params[:q])
-      @uses = @q.result(:distinct => true).includes(:purchase, :user).page(params[:page]).per(10)
+    @uses = @q.result(:distinct => true).includes(:purchase, :user).page(params[:page]).per(10)
+
+    @record = current_user.uses.all
+    @log = Hash.new
+    @record.each do |use|
+      d = use.date.to_date
+      if d >= use.purchase.open_date
+        if d <= Time.now.to_date
+          if @log[d] == nil
+            @log[d] = [use]
+          else
+            @log[d].push(use)
+          end
+        end
+      end
+    end
 
     render("uses/index.html.erb")
   end
@@ -24,13 +39,12 @@ class UsesController < ApplicationController
 
   def new
     @use = Use.new
-
+    @purchase = current_user.purchases
     render("uses/new.html.erb")
   end
 
   def create
     @use = Use.new
-
     @use.purchase_id = params[:purchase_id]
     @use.user_id = params[:user_id]
     @use.date = params[:date]
@@ -46,8 +60,8 @@ class UsesController < ApplicationController
       else
         redirect_back(:fallback_location => "/", :notice => "Use created successfully.")
       end
-    else
-      render("uses/new.html.erb")
+    # else
+    #   render("uses/new.html.erb")
     end
   end
 

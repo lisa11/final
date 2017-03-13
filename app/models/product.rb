@@ -15,4 +15,8 @@ class Product < ApplicationRecord
 
   validates :product_name, :uniqueness => { :scope => [:brand_id, :sensitive_skin, :skin_type] }
 
+  validates :brand_id, :shelf_life, :skin_type, :image_url, :product_name, presence: true
+  validates_presence_of :skincare_category, if: :skincare?
+  validates_presence_of :makeup_category, if: :makeup?
+
 end

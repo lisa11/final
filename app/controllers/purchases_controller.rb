@@ -1,17 +1,42 @@
 class PurchasesController < ApplicationController
-  before_action :current_user_must_be_purchase_user, :only => [:show, :edit, :update, :destroy]
+  # before_action :current_user_must_be_purchase_user, :only => [:show, :edit, :update, :destroy]
 
-  def current_user_must_be_purchase_user
-    purchase = Purchase.find(params[:id])
-
-    unless current_user == purchase.user
-      redirect_to :back, :alert => "You are not authorized for that."
-    end
-  end
+  # def current_user_must_be_purchase_user
+  #   purchase = Purchase.find(params[:id])
+  #
+  #   unless current_user == purchase.user
+  #     redirect_to :back, :alert => "You are not authorized for that."
+  #   end
+  # end
 
   def index
     @q = current_user.purchases.ransack(params[:q])
-      @purchases = @q.result(:distinct => true).includes(:product, :uses, :user).page(params[:page]).per(10)
+    @purchases = @q.result(:distinct => true).includes(:product, :uses, :user).page(params[:page]).per(10)
+
+    @frequently = []
+    @occasional = []
+    @rarely = []
+    @unopen = []
+
+    @purchases.each do |purchase|
+      if purchase.open_date = nil
+        @unopen.push(purchase)
+      else
+        u = 0
+        purchase.uses.each do |use|
+          if use.date - Time.now < (30*24*60*60)
+            u += 1
+          end
+        end
+        if u > 20
+          @frequently.push(purchase)
+        elsif u > 4
+          @occasional.push(purchase)
+        else
+          @rarely.push(purchase)
+        end
+      end
+    end
 
     render("purchases/index.html.erb")
   end

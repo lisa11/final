@@ -1,26 +1,13 @@
 <div class="page-header">
-  <h3>Purchase #<%= @purchase.id %></h3>
+  <h3><%= @purchase.product.product_name %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Product</dt>
-      <dd>
-        <% if @purchase.product.present? %>
-          <a href="/products/<%= @purchase.product_id %>">
-            <%= @purchase.product.brand_id %>
-          </a>
-        <% end %>
-      </dd>
 
-      <dt>User</dt>
       <dd>
-        <% if @purchase.user.present? %>
-          <a href="/users/<%= @purchase.user_id %>">
-            <%= @purchase.user.email %>
-          </a>
-        <% end %>
+        <img src="<%= @purchase.product.image_url %>" height="150px" width="auto">
       </dd>
 
       <dt>Rating</dt>
@@ -68,7 +55,7 @@
       <% @purchase.uses.each do |use| %>
         <li class="list-group-item">
           <a href="/uses/<%= use.id %>">
-            <%= use.purchase_id %>
+            <%= use.date %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/uses/<%= use.id %>" class="btn btn-primary">
@@ -101,7 +88,7 @@
           Date
         </label>
 
-        <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="">
+        <input type="datetime-local" id="date" name="date" class="form-control" value="<%= Time.now %>">
       </div>
 
       <button class="btn btn-block btn-success">

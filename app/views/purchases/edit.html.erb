@@ -24,11 +24,11 @@
           Product
         </label>
 
-        <%= select_tag(:product_id, options_from_collection_for_select(Product.all, :id, :brand_id, @purchase.product_id), :class => "form-control") %>
+        <%= select_tag(:product_id, options_from_collection_for_select(Product.all, :id, :product_name, @purchase.product_id), :class => "form-control") %>
       </div>
 
-      
-      
+
+
 
       <!-- Label and input for rating -->
       <div class="form-group">
@@ -54,7 +54,7 @@
           Open date
         </label>
 
-        <input type="text" id="open_date" name="open_date" placeholder="Open date" class="form-control" value="<%= @purchase.open_date %>">
+        <input type="date" id="open_date" name="open_date" class="form-control" value="<%= @purchase.open_date %>">
       </div>
 
       <!-- Label and input for empty -->

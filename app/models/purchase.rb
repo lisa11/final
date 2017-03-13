@@ -11,5 +11,7 @@ class Purchase < ApplicationRecord
   # Indirect associations
 
   # Validations
+  validates :product, presence: true, :uniqueness => {:scope => [:open_date, :user_id, :empty]}
+  validates :estimated_number_of_uses, presence: true
 
 end

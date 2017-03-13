@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @use.errors.any? %>
-  <% @use.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @use.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -14,36 +14,46 @@
 
 <div class="row">
   <div class="col-md-12">
-    <form action="/create_use" method="post">
+    <form action="/create_use" method="post" id="form1">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <!-- Label and input for purchase_id -->
       <div class="form-group">
-        <label for="purchase_id" class="control-label">
-          Purchase
-        </label>
+        <!-- <label for="purchase_id" class="control-label">
+        Purchase
+      </label> -->
+      <!-- <%= select_tag(:purchase_id, options_from_collection_for_select(Purchase.all, :id, :product_id, @use.purchase_id), :class => "form-control") %> -->
 
-        <%= select_tag(:purchase_id, options_from_collection_for_select(Purchase.all, :id, :product_id, @use.purchase_id), :class => "form-control") %>
-      </div>
 
-      <!-- Label and input for user_id -->
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+      <% @purchase.each do |purchase| %>
+      <% if purchase.empty != true%>
 
-      <!-- Label and input for date -->
-      <div class="form-group">
-        <label for="date" class="control-label">
-          Date
-        </label>
+      <label class="purchase-id">
+        <input type="radio" id="purchase_id" name="purchase_id" value="<%= purchase.product_id %>">
+        <img src="<%= purchase.product.image_url %>" height="100px" width="auto">
+      </label>
+      <% end %>
+      <% end %>
+    </div>
 
-        <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @use.date %>">
-      </div>
+    <!-- Label and input for user_id -->
+    <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
-      <button class="btn btn-success">
-        Create Use
-      </button>
-      or
-      <a href="/uses">Cancel</a>
-    </form>
-  </div>
+    <!-- Label and input for date -->
+    <div class="form-group">
+      <label for="date" class="control-label">
+        Date
+      </label>
+
+      <input type="datetime-local" id="date" name="date" class="form-control" value="<%= Time.now.to_time %>">
+    </div>
+
+    <button type="submit" form="form1" class="btn btn-success" >
+      Create Use
+    </button>
+    or
+    <a href="/uses">Cancel</a>
+  </form>
+</div>
 </div>

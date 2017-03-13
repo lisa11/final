@@ -1,29 +1,20 @@
 <div class="page-header">
-  <h3>Use #<%= @use.id %></h3>
+  <h3><%= @use.purchase.product.product_name %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
-      <dt>Purchase</dt>
+      <dt>Product</dt>
       <dd>
         <% if @use.purchase.present? %>
           <a href="/purchases/<%= @use.purchase_id %>">
-            <%= @use.purchase.product_id %>
+            <img src="<%= @use.purchase.product.image_url %>" height="150px" width="auto">
           </a>
         <% end %>
       </dd>
 
-      <dt>User</dt>
-      <dd>
-        <% if @use.user.present? %>
-          <a href="/users/<%= @use.user_id %>">
-            <%= @use.user.email %>
-          </a>
-        <% end %>
-      </dd>
-
-      <dt>Date</dt>
+      <dt>Use Date</dt>
       <dd><%= @use.date %></dd>
 
     </dl>
@@ -33,9 +24,6 @@
         Back
       </a>
       <% if current_user == @use.user %>
-        <a href="/uses/<%= @use.id %>/edit" class="btn btn-warning">
-          Edit
-        </a>
         <a href="/delete_use/<%= @use.id %>" class="btn btn-danger" rel="nofollow">
           Delete
         </a>

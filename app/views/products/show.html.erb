@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h3>Product #<%= @product.id %></h3>
+  <h3><%= @product.product_name %></h3>
 </div>
 
 <div class="row">
@@ -8,38 +8,36 @@
       <dt>Brand</dt>
       <dd>
         <% if @product.brand.present? %>
-          <a href="/brands/<%= @product.brand_id %>">
-            <%= @product.brand.brand_name %>
-          </a>
+        <a href="/brands/<%= @product.brand_id %>">
+          <%= @product.brand.brand_name %>
+        </a>
         <% end %>
       </dd>
 
       <dt>Shelf life</dt>
       <dd><%= @product.shelf_life %></dd>
 
+      <dt>Sensitive skin</dt>
+      <dd>
+        <% if @product.sensitive_skin %>
+        Yes
+        <% else %>
+        No
+        <% end %>
+      </dd>
+
       <dt>Skin type</dt>
       <dd><%= @product.skin_type %></dd>
 
-      <dt>Skincare</dt>
-      <dd><%= @product.skincare %></dd>
-
-      <dt>Skincare category</dt>
+      <dt>Category</dt>
+      <% if @product.skincare %>
       <dd><%= @product.skincare_category %></dd>
-
-      <dt>Makeup</dt>
-      <dd><%= @product.makeup %></dd>
-
-      <dt>Makeup category</dt>
+      <% elsif @product.makeup %>
       <dd><%= @product.makeup_category %></dd>
+      <% end %>
 
-      <dt>Image url</dt>
-      <dd><%= @product.image_url %></dd>
-
-      <dt>Product name</dt>
-      <dd><%= @product.product_name %></dd>
-
-      <dt>Sensitive skin</dt>
-      <dd><%= @product.sensitive_skin %></dd>
+      <dt>Image</dt>
+      <dd><img src="<%= @product.image_url %>" height="200px" width="auto"></dd>
 
     </dl>
 
@@ -47,12 +45,12 @@
       <a href="/products" class="btn btn-primary">
         Back
       </a>
-      <a href="/products/<%= @product.id %>/edit" class="btn btn-warning">
+      <!-- <a href="/products/<%= @product.id %>/edit" class="btn btn-warning">
         Edit
       </a>
       <a href="/delete_product/<%= @product.id %>" class="btn btn-danger" rel="nofollow">
         Delete
-      </a>
+      </a> -->
     </div>
   </div>
 </div>
@@ -62,120 +60,69 @@
 <div class="row">
   <div class="col-md-12">
     <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Purchases
-      </li>
-
-      <% @product.purchases.each do |purchase| %>
-        <li class="list-group-item">
-          <a href="/purchases/<%= purchase.id %>">
-            <%= purchase.product_id %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/purchases/<%= purchase.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/purchases/<%= purchase.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_purchase/<%= purchase.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
 
       <li class="list-group-item">
         <form action="/create_purchase" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for product_id -->
-      <input type="hidden" name="product_id" value="<%= @product.id %>">
+          <!-- Label and input for product_id -->
+          <input type="hidden" name="product_id" value="<%= @product.id %>">
 
-      <!-- Label and input for user_id -->
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+          <!-- Label and input for user_id -->
+          <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
-      <!-- Label and input for rating -->
-      <div class="form-group">
-        <label for="rating" class="control-label">
-          Rating
-        </label>
+          <!-- Label and input for rating -->
+          <div class="form-group">
+            <label for="rating" class="control-label">
+              Rating
+            </label>
 
-        <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="">
-      </div>
+            <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="">
+          </div>
 
-      <!-- Label and input for note -->
-      <div class="form-group">
-        <label for="note" class="control-label">
-          Note
-        </label>
+          <!-- Label and input for note -->
+          <div class="form-group">
+            <label for="note" class="control-label">
+              Note
+            </label>
 
-        <textarea id="note" name="note" placeholder="Note" class="form-control" rows="3"></textarea>
-      </div>
+            <textarea id="note" name="note" placeholder="Note" class="form-control" rows="3"></textarea>
+          </div>
 
-      <!-- Label and input for open_date -->
-      <div class="form-group">
-        <label for="open_date" class="control-label">
-          Open date
-        </label>
+          <!-- Label and input for open_date -->
+          <div class="form-group">
+            <label for="open_date" class="control-label">
+              Open date
+            </label>
 
-        <input type="text" id="open_date" name="open_date" placeholder="Open date" class="form-control" value="">
-      </div>
+            <input type="date" id="open_date" name="open_date" placeholder="Open date" class="form-control" value="">
+          </div>
 
-      <!-- Label and input for empty -->
-      <div class="checkbox">
-        <label for="empty">
-          <input type="checkbox" id="empty" name="empty" value="1" <%= "checked" if @purchase.empty %>>
-          Empty
-        </label>
-      </div>
+          <!-- Label and input for empty -->
+          <div class="checkbox">
+            <label for="empty">
+              <input type="checkbox" id="empty" name="empty" value="1" <%= "checked" if @purchase.empty %>>
+              Empty
+            </label>
+          </div>
 
-      <!-- Label and input for estimated_number_of_uses -->
-      <div class="form-group">
-        <label for="estimated_number_of_uses" class="control-label">
-          Estimated number of uses
-        </label>
+          <!-- Label and input for estimated_number_of_uses -->
+          <div class="form-group">
+            <label for="estimated_number_of_uses" class="control-label">
+              Estimated number of uses
+            </label>
 
-        <input type="text" id="estimated_number_of_uses" name="estimated_number_of_uses" placeholder="Estimated number of uses" class="form-control" value="">
-      </div>
+            <input type="text" id="estimated_number_of_uses" name="estimated_number_of_uses" placeholder="Estimated number of uses" class="form-control" value="">
+          </div>
 
-      <button class="btn btn-block btn-success">
-        Create Purchase
-      </button>
-    </form>
+          <button class="btn btn-block btn-success">
+            Create Purchase
+          </button>
+        </form>
       </li>
     </ul>
   </div>
 </div>
 
 <!-- A Product has many users -->
-
-<div class="row">
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-info">
-        Users
-      </li>
-
-      <% @product.users.each do |user| %>
-        <li class="list-group-item">
-          <a href="/users/<%= user.id %>">
-            <%= user.email %>
-          </a>
-          <div class="btn-group btn-group-xs pull-right">
-            <a href="/users/<%= user.id %>" class="btn btn-primary">
-              <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/users/<%= user.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
-            </a>
-            <a href="/delete_user/<%= user.id %>" class="btn btn-danger" rel="nofollow">
-              <i class="fa fa-trash-o"></i>
-            </a>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
