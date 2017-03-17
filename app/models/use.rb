@@ -9,7 +9,7 @@ class Use < ApplicationRecord
   # Indirect associations
 
   # Validations
-  validates :purchase, :presence => true, :uniqueness => {:scope => :date}
+  validates :purchase_id, :uniqueness => {:scope => :date}
 
   validates :date, :presence => true
 
