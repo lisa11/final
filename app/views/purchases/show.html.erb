@@ -20,7 +20,13 @@
       <dd><%= @purchase.open_date %></dd>
 
       <dt>Empty</dt>
-      <dd><%= @purchase.empty %></dd>
+      <dd>
+        <% if @purchase.empty == true%>
+        Yes
+        <% else %>
+        No
+        <% end %>
+      </dd>
 
       <dt>Estimated number of uses</dt>
       <dd><%= @purchase.estimated_number_of_uses %></dd>
@@ -60,9 +66,6 @@
           <div class="btn-group btn-group-xs pull-right">
             <a href="/uses/<%= use.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
-            </a>
-            <a href="/uses/<%= use.id %>/edit" class="btn btn-warning">
-              <i class="fa fa-edit"></i>
             </a>
             <a href="/delete_use/<%= use.id %>" class="btn btn-danger" rel="nofollow">
               <i class="fa fa-trash-o"></i>

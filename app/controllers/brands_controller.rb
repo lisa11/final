@@ -49,7 +49,7 @@ class BrandsController < ApplicationController
   def update
     @brand = Brand.find(params[:id])
 
-    @brand.brand_name = params[:brand_name]
+    # @brand.brand_name = params[:brand_name]
 
     save_status = @brand.save
 
@@ -70,7 +70,7 @@ class BrandsController < ApplicationController
   def destroy
     @brand = Brand.find(params[:id])
 
-    @brand.destroy
+    # @brand.destroy
 
     if URI(request.referer).path == "/brands/#{@brand.id}"
       redirect_to("/", :notice => "Brand deleted.")

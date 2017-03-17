@@ -62,16 +62,16 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
 
-    @product.brand_id = params[:brand_id]
-    @product.shelf_life = params[:shelf_life]
-    @product.skin_type = params[:skin_type]
-    @product.skincare = params[:skincare]
-    @product.skincare_category = params[:skincare_category]
-    @product.makeup = params[:makeup]
-    @product.makeup_category = params[:makeup_category]
-    @product.image_url = params[:image_url]
-    @product.product_name = params[:product_name]
-    @product.sensitive_skin = params[:sensitive_skin]
+    # @product.brand_id = params[:brand_id]
+    # @product.shelf_life = params[:shelf_life]
+    # @product.skin_type = params[:skin_type]
+    # @product.skincare = params[:skincare]
+    # @product.skincare_category = params[:skincare_category]
+    # @product.makeup = params[:makeup]
+    # @product.makeup_category = params[:makeup_category]
+    # @product.image_url = params[:image_url]
+    # @product.product_name = params[:product_name]
+    # @product.sensitive_skin = params[:sensitive_skin]
 
     save_status = @product.save
 
@@ -92,7 +92,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
 
-    @product.destroy
+    # @product.destroy
 
     if URI(request.referer).path == "/products/#{@product.id}"
       redirect_to("/", :notice => "Product deleted.")

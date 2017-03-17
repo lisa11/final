@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root :to => "products#index"
+
+  get "/finish", :controller => "purchases", :action => "finish"
+
   # Routes for the Brand resource:
   # CREATE
   get "/brands/new", :controller => "brands", :action => "new"

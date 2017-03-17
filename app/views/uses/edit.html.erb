@@ -9,7 +9,8 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Use #<%= @use.id %></h3>
+  <h3><%= @use.purchase.product.product_name %> for <%= @use.date.to_date %></h3>
+  <img src="<%= @use.purchase.product.image_url %>" height="150px" width="auto">
 </div>
 
 <div class="row">
@@ -18,17 +19,6 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for purchase_id -->
-      <div class="form-group">
-        <label for="purchase_id" class="control-label">
-          Purchase
-        </label>
-
-        <%= select_tag(:purchase_id, options_from_collection_for_select(Purchase.all, :id, :product_id, @use.purchase_id), :class => "form-control") %>
-      </div>
-
-
-
 
       <!-- Label and input for date -->
       <div class="form-group">
@@ -36,7 +26,8 @@
           Date
         </label>
 
-        <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @use.date %>">
+        <input type="datetime" id="date" name="date" placeholder="Date" class="form-control" value="<%= @use.date %>">
+
       </div>
 
       <button class="btn btn-warning">

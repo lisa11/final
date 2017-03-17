@@ -15,6 +15,11 @@
   <% end %>
   <% end %>
 
+<style media="screen">
+  .p {
+    align-content: center;
+  }
+</style>
 
 
   <h3>Frequently Used</h3>
@@ -23,6 +28,9 @@
       <% @frequently.each do |purchase| %>
       <td class="col-md-3" style="display: block;">
         <a href="/purchases/<%= purchase.id %>"><img src="<%= purchase.product.image_url %>" height="300" width=auto></a>
+        <p><%= purchase.open_date %></p>
+        <p>Number of Uses: <%= purchase.uses.count %></p>
+        <p>Estimated # of Uses Left: <%= purchase.estimated_number_of_uses - purchase.uses.count %></p>
       </td>
       <% end %>
     </tr>
@@ -34,6 +42,9 @@
       <% @occasional.each do |purchase| %>
       <td class="col-md-3" style="display: block;">
         <a href="/purchases/<%= purchase.id %>"><img src="<%= purchase.product.image_url %>" height="300" width=auto></a>
+        <p><%= purchase.open_date %></p>
+        <p>Number of Uses: <%= purchase.uses.count %></p>
+        <p>Estimated # of Uses Left: <%= purchase.estimated_number_of_uses - purchase.uses.count %></p>
       </td>
       <% end %>
     </tr>
@@ -43,12 +54,19 @@
   <div class="container">
     <tr>
       <% @rarely.each do |purchase| %>
-      <td class="col-md-3" style="display: block;">
-        <a href="/purchases/<%= purchase.id %>"><img src="<%= purchase.product.image_url %>" height="300" width=auto></a>
+      <td >
+        <div class="col-md-3" style="display: block;">
+          <a href="/purchases/<%= purchase.id %>"><img src="<%= purchase.product.image_url %>" height="300" width=auto></a>
+          <p><%= purchase.open_date %></p>
+          <p>Number of Uses: <%= purchase.uses.count %></p>
+          <p>Estimated # of Uses Left: <%= purchase.estimated_number_of_uses - purchase.uses.count %></p>
+        </div>
       </td>
       <% end %>
     </tr>
   </div>
+
+
 
 
 

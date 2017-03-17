@@ -9,6 +9,21 @@ class PurchasesController < ApplicationController
   #   end
   # end
 
+  def finish
+    @q = current_user.purchases.ransack(params[:q])
+    @purchases = @q.result(:distinct => true).includes(:product, :uses, :user).page(params[:page]).per(10)
+
+    @empty = []
+    @purchases.each do |purchase|
+      if purchase.empty == true
+        @empty.push(purchase)
+      end
+    end
+
+
+    render("purchases/finish.html.erb")
+  end
+
   def index
     @q = current_user.purchases.ransack(params[:q])
     @purchases = @q.result(:distinct => true).includes(:product, :uses, :user).page(params[:page]).per(10)
@@ -90,8 +105,8 @@ class PurchasesController < ApplicationController
   def update
     @purchase = Purchase.find(params[:id])
 
-    @purchase.product_id = params[:product_id]
-    @purchase.user_id = params[:user_id]
+    # @purchase.product_id = params[:product_id]
+    # @purchase.user_id = params[:user_id]
     @purchase.rating = params[:rating]
     @purchase.note = params[:note]
     @purchase.open_date = params[:open_date]

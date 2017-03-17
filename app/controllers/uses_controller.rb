@@ -44,6 +44,8 @@ class UsesController < ApplicationController
   end
 
   def create
+    @purchase = current_user.purchases
+
     @use = Use.new
     @use.purchase_id = params[:purchase_id]
     @use.user_id = params[:user_id]
@@ -60,8 +62,8 @@ class UsesController < ApplicationController
       else
         redirect_back(:fallback_location => "/", :notice => "Use created successfully.")
       end
-    # else
-    #   render("uses/new.html.erb")
+    else
+      render("uses/new.html.erb")
     end
   end
 
@@ -74,8 +76,8 @@ class UsesController < ApplicationController
   def update
     @use = Use.find(params[:id])
 
-    @use.purchase_id = params[:purchase_id]
-    @use.user_id = params[:user_id]
+    # @use.purchase_id = params[:purchase_id]
+    # @use.user_id = params[:user_id]
     @use.date = params[:date]
 
     save_status = @use.save
