@@ -33,7 +33,7 @@ class UsesController < ApplicationController
 
   def show
     @use = Use.find(params[:id])
-
+    
     render("uses/show.html.erb")
   end
 
