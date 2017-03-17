@@ -105,7 +105,7 @@ class PurchasesController < ApplicationController
   def update
     @purchase = Purchase.find(params[:id])
 
-    # @purchase.product_id = params[:product_id]
+    @purchase.product_id = params[:product_id]
     # @purchase.user_id = params[:user_id]
     @purchase.rating = params[:rating]
     @purchase.note = params[:note]

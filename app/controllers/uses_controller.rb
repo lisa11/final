@@ -48,7 +48,7 @@ class UsesController < ApplicationController
 
     @use = Use.new
     @use.purchase_id = params[:purchase_id]
-    @use.user_id = params[:user_id]
+    # @use.user_id = params[:user_id]
     @use.date = params[:date]
 
     save_status = @use.save
