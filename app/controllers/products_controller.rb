@@ -1,7 +1,5 @@
 class ProductsController < ApplicationController
 
-  # @skin_type = ["oily", "dry", "combination_oily", "combination_dry", "combination"]
-
   def index
     @q = Product.ransack(params[:q])
     @products = @q.result(:distinct => true).includes(:purchases, :brand, :users).page(params[:page]).per(10)
@@ -18,7 +16,6 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    # @skin_type = ["all", "oily", "dry", "combination", "combination_oily", "combination_dry"]
 
     render("products/new.html.erb")
   end

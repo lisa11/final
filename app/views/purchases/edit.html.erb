@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Edit Purchase: 
+  <h3>Edit Purchase:
     <%= @purchase.product.product_name %></h3>
 </div>
 
@@ -34,7 +34,7 @@
       <!-- Label and input for rating -->
       <div class="form-group">
         <label for="rating" class="control-label">
-          Rating
+          Rating (on a scale of 0 - 5)
         </label>
 
         <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="<%= @purchase.rating %>">

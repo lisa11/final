@@ -10,6 +10,7 @@ class Use < ApplicationRecord
 
   # Validations
   validates :purchase, :presence => true, :uniqueness => {:scope => :date}
+
   validates :date, :presence => true
 
 
